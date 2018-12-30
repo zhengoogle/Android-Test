@@ -46,13 +46,13 @@ def coverageSourceDirs = [
         '../app/src/main/java'
 ]
 
-task jacocoTestReport(type:JacocoReport, dependsOn: "connectedAndroidTest") {
+task jacocoAndtoidTestDebugReport(type:JacocoReport, dependsOn: "connectedDebugAndroidTest") {
     group = "Reporting"
 
     description = "Generate Jacoco coverage reports"
 
     classDirectories = fileTree(
-            dir: '../app/build/intermediates/classes/debug',
+            dir: '../app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes',
             excludes: ['**/R.class',
                        '**/R$*.class',
                        '**/*$ViewInjector*.*',
@@ -62,7 +62,7 @@ task jacocoTestReport(type:JacocoReport, dependsOn: "connectedAndroidTest") {
 
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
-    executionData = files('../app/build/jacoco/testDebugUnitTest.exec')
+    executionData = files('../app/build/outputs/code-coverage/connected/PE-UL00 - 6.0-coverage.ec')
 
     reports {
         xml.enabled = true
